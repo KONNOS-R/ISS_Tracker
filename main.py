@@ -2,10 +2,21 @@ import requests
 import time
 
 
-api = "http://api.open-notify.org/iss-now.json"
+def getPeopData():
+    api = "http://api.open-notify.org/astros.json"
+    try:
+        raw_data = (requests.get(api, timeout = 5)).json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}\n")
+        return None
+
+    num = raw_data["number"]
+
+    return num
 
 
-def getData():
+def getPosData():
+    api = "http://api.open-notify.org/iss-now.json"
     try:
         raw_data = (requests.get(api, timeout = 5)).json()
     except requests.exceptions.RequestException as e:
@@ -23,7 +34,8 @@ def help():
     help  - Lists all commands.
     track {parameter}
         {-t}  - Returns position data for the ISS until interupted.
-        {[num]}  - Returns position data for the ISS [num] times.}'''
+        {[num]}  - Returns position data for the ISS [num] times.
+    people  - Returns the number of people that are currently in space.'''
 
 
 def track(par):
@@ -31,7 +43,7 @@ def track(par):
         print("\n!Displaying Position Data for infinite requests.\n")
         try:
             while True:
-                data = getData()
+                data = getPosData()
                 if data != None:
                     lat, lon = data
                     print(f"------ISS position------\nLatitude: {lat}\nLongitude: {lon}\n")
@@ -43,13 +55,19 @@ def track(par):
             t  = int(par)
             print(f"\n!Displaying Position Data for {t} request(s).\n")
             for i in range(t):
-                data = getData()
+                data = getPosData()
                 if data != None:
                     lat, lon = data
                     print(f"------ISS position------\nLatitude: {lat}\nLongitude: {lon}\n")
                 time.sleep(1)
         except TypeError as e:
             print("Error: Incorrect parammeters")
+
+
+def people():
+    data = getPeopData()
+    if data != None:
+        print(f"\nThere are currently {data} people in space!\n")
 
 
 #Main Programme
@@ -85,6 +103,9 @@ while __name__ == "__main__":
             if par == "":
                 par = 1
             track(par)
+        
+        elif command.strip() == "people":
+            people()
 
         #invalid command
         else:
