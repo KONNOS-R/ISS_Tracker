@@ -72,20 +72,23 @@ print('''\033[34m
 ''')
 
 while __name__ == "__main__":
-    command = input(">").lstrip()
-    
-    #help command
-    if command.strip() == "help":
-        print(help())
+    try:
+        command = input(">").lstrip()
 
-    #track command
-    elif command[:5] == "track":
-        par = command[5:].strip()
-        if par == "":
-            par = 1
-        track(par)
+        #help command
+        if command.strip() == "help":
+            print(help())
 
-    #invalid command
-    else:
-        print("!Invalid command. Enter 'help' to display command list.")
+        #track command
+        elif command[:5] == "track":
+            par = command[5:].strip()
+            if par == "":
+                par = 1
+            track(par)
 
+        #invalid command
+        else:
+            print("!Invalid command. Enter 'help' to display command list.")
+    except KeyboardInterrupt:
+        print("\nExiting...\n")
+        break
