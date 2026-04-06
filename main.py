@@ -53,7 +53,7 @@ def track(par):
 
 
 #Main Programme
-print('''
+print('''\033[34m
           ooo
          / : \\
    _____"~~~~~"_____
@@ -67,7 +67,7 @@ print('''
   |####>\\_____/<####|
    ‾‾‾˙   | |   ˙‾‾‾
           o o
-      
+\033[0m    
 * ISS Position Tracker *
 ''')
 
