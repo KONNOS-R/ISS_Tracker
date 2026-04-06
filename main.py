@@ -52,9 +52,24 @@ def track(par):
             print("Error: Incorrect parammeters")
 
 
-
 #Main Programme
-print("* ISS Position Tracker *")
+print('''
+          ooo
+         / : \\
+   _____"~~~~~"_____
+   \\+##|U *^* U|##+/
+    \\..!('ISS')!../
+     ^--o|   |o--^
+  +====}:^ ^ ^:{====+
+   ___. .| ! |. .___
+  |####:/" " "\\:####|
+  |####=|  O  |=####|
+  |####>\\_____/<####|
+   ‾‾‾˙   | |   ˙‾‾‾
+          o o
+      
+* ISS Position Tracker *
+''')
 
 while __name__ == "__main__":
     command = input(">").lstrip()
@@ -73,3 +88,4 @@ while __name__ == "__main__":
     #invalid command
     else:
         print("!Invalid command. Enter 'help' to display command list.")
+
