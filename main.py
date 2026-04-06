@@ -26,7 +26,7 @@ def help():
         {[num]}  - Returns position data for the ISS [num] times.}'''
 
 
-def trackSelectionTool(par):
+def track(par):
     if par == "-t":
         print("\n!Displaying Position Data for infinite requests.\n")
         try:
@@ -37,7 +37,7 @@ def trackSelectionTool(par):
                     print(f"------ISS position------\nLatitude: {lat}\nLongitude: {lon}\n")
                 time.sleep(1)
         except KeyboardInterrupt:
-            print("\nExiting...")
+            print("\nExiting...\n")
     else:
         try:
             t  = int(par)
@@ -53,23 +53,23 @@ def trackSelectionTool(par):
 
 
 
+#Main Programme
 print("* ISS Position Tracker *")
 
 while __name__ == "__main__":
-    command = input(">")
+    command = input(">").lstrip()
     
     #help command
-    if command.lstrip() == "help":
+    if command.strip() == "help":
         print(help())
 
     #track command
     elif command[:5] == "track":
-        par = command[5:].lstrip()
+        par = command[5:].strip()
         if par == "":
             par = 1
-        trackSelectionTool(par)
+        track(par)
 
-
-
+    #invalid command
     else:
         print("!Invalid command. Enter 'help' to display command list.")
