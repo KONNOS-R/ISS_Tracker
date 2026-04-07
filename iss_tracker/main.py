@@ -71,45 +71,49 @@ def people():
 
 
 #Main Programme
-print('''\033[34m
-          ooo
-         / : \\
-   _____"~~~~~"_____
-   \\+##|U *^* U|##+/
-    \\..!('ISS')!../
-     ^--o|   |o--^
-  +====}:^ ^ ^:{====+
-   ___. .| ! |. .___
-  |####:/" " "\\:####|
-  |####=|  O  |=####|
-  |####>\\_____/<####|
-   ‾‾‾˙   | |   ˙‾‾‾
-          o o
-\033[0m    
-* ISS Position Tracker *
-''')
+def main():
+    print('''\033[34m
+              ooo
+             / : \\
+       _____"~~~~~"_____
+       \\+##|U *^* U|##+/
+        \\..!('ISS')!../
+         ^--o|   |o--^
+      +====}:^ ^ ^:{====+
+       ___. .| ! |. .___
+      |####:/" " "\\:####|
+      |####=|  O  |=####|
+      |####>\\_____/<####|
+       ‾‾‾˙   | |   ˙‾‾‾
+              o o
+    \033[0m    
+    * ISS Position Tracker *
+    ''')
 
-while __name__ == "__main__":
-    try:
-        command = input(">").lstrip()
+    while True:
+        try:
+            command = input(">").lstrip()
 
-        #help command
-        if command.strip() == "help":
-            print(help())
+            #help command
+            if command.strip() == "help":
+                print(help())
 
-        #track command
-        elif command[:5] == "track":
-            par = command[5:].strip()
-            if par == "":
-                par = 1
-            track(par)
-        
-        elif command.strip() == "people":
-            people()
+            #track command
+            elif command[:5] == "track":
+                par = command[5:].strip()
+                if par == "":
+                    par = 1
+                track(par)
 
-        #invalid command
-        else:
-            print("!Invalid command. Enter 'help' to display command list.")
-    except KeyboardInterrupt:
-        print("\nExiting...\n")
-        break
+            elif command.strip() == "people":
+                people()
+
+            #invalid command
+            else:
+                print("!Invalid command. Enter 'help' to display command list.")
+        except KeyboardInterrupt:
+            print("\nExiting...\n")
+            break
+
+if __name__ == "__main__":
+    main()

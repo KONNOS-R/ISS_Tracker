@@ -8,6 +8,7 @@ commands include:
     people  - Returns the number of people that are currently in space.
 
 Hope you like it! :)
+https://pypi.org/project/iss-tracker-cli/0.1.0/
 
 
 (this project uses open notify API)
