@@ -1,5 +1,7 @@
 Simple cli tool for tracking the position of the ISS in real time!
 
+Run the programme using python with the name 'iss-tracker'.
+
 commands include:
     help  - Lists all commands.
     track {parameter}
