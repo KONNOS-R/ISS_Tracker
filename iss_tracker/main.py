@@ -2,6 +2,7 @@ import requests
 import time
 
 
+#gets the number of people in space
 def getPeopData():
     api = "http://api.open-notify.org/astros.json"
     try:
@@ -14,7 +15,7 @@ def getPeopData():
 
     return num
 
-
+#gets postion data of the ISS
 def getPosData():
     api = "http://api.open-notify.org/iss-now.json"
     try:
@@ -28,16 +29,16 @@ def getPosData():
 
     return (lat, lon)
 
-
+#help command
 def help():
     return '''command list:
-    help  - Lists all commands.
+    help - Lists all commands.
     track {parameter}
-        {-t}  - Returns position data for the ISS until interupted.
-        {[num]}  - Returns position data for the ISS [num] times.
-    people  - Returns the number of people that are currently in space.'''
+        {-t} - Returns position data for the ISS until interupted.
+        {[num]} - Returns position data for the ISS [num] times.
+    people - Returns the number of people that are currently in space.'''
 
-
+#track command
 def track(par):
     if par == "-t":
         print("\n!Displaying Position Data for infinite requests.\n")
@@ -63,14 +64,13 @@ def track(par):
         except TypeError as e:
             print("Error: Incorrect parammeters")
 
-
+#people command
 def people():
     data = getPeopData()
     if data != None:
         print(f"\nThere are currently {data} people in space!\n")
 
-
-#Main Programme
+#main Program
 def main():
     print('''\033[34m
               ooo
@@ -92,20 +92,18 @@ def main():
 
     while True:
         try:
-            command = input(">").lstrip()
+            command = input(">").split()
 
             #help command
-            if command.strip() == "help":
+            if len(command) == 1 and command[0] == "help":
                 print(help())
 
             #track command
-            elif command[:5] == "track":
-                par = command[5:].strip()
-                if par == "":
-                    par = 1
+            elif len(command) in (1,2) and command[0] == "track":
+                par = command[1] if len(command) > 1 and command[1] else 1
                 track(par)
 
-            elif command.strip() == "people":
+            elif len(command) == 1 and command[0] == "people":
                 people()
 
             #invalid command
@@ -114,6 +112,7 @@ def main():
         except KeyboardInterrupt:
             print("\nExiting...\n")
             break
+
 
 if __name__ == "__main__":
     main()
