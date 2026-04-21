@@ -1,7 +1,8 @@
 ISS Position Tracker (CLI)
 A simple cli python tool for tracking the position of the International Space Station (ISS) in real time as well as how many people are currently in space!
 
-Run the program named 'iss-tracker' using python and run use the desired commands, exits gracefully with Ctrl + C.
+Run the program named 'iss-tracker' using python (in the directory where the module) and run use the desired commands, exits gracefully with Ctrl + C.
+
 
 Available commands:
     help - Lists all commands.
