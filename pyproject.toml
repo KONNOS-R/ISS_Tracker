@@ -34,7 +34,7 @@ classifiers = [
 ]
 
 [project.scripts]
-iss-tracker = "iss_tracker:main"
+iss-tracker = "iss_tracker.main:main"
 
 [tool.setuptools]
 py-modules = ["iss_tracker"]
