@@ -3,25 +3,38 @@ import time
 
 
 #gets the number of people in space
-def getPeopData():
+def getPeopData() -> int | None:
     api = "http://api.open-notify.org/astros.json"
+
     try:
         raw_data = (requests.get(api, timeout = 5)).json()
+
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}\n")
+        return None
+
+    if "number" not in raw_data:
+        print("Unexpected API response format")
         return None
 
     num = raw_data["number"]
 
     return num
 
+
 #gets postion data of the ISS
-def getPosData():
+def getPosData() -> tuple[str, str] | None:
     api = "http://api.open-notify.org/iss-now.json"
+
     try:
         raw_data = (requests.get(api, timeout = 5)).json()
+
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}\n")
+        return None
+
+    if "iss_position" not in raw_data:
+        print("Unexpected API response format")
         return None
 
     lat = raw_data["iss_position"]["latitude"]
@@ -29,14 +42,19 @@ def getPosData():
 
     return (lat, lon)
 
+
 #help command
 def help():
-    return '''command list:
+    return '''\nCOMMAND LIST:
     help - Lists all commands.
+
     track {parameter}
-        {-t} - Returns position data for the ISS until interupted.
+        {-t} - Returns position data for the ISS until interrupted.
         {[num]} - Returns position data for the ISS [num] times.
-    people - Returns the number of people that are currently in space.'''
+
+    people - Returns the number of people that are currently in space.
+'''
+
 
 #track command
 def track(par):
@@ -53,7 +71,7 @@ def track(par):
             print("\nExiting...\n")
     else:
         try:
-            t  = int(par)
+            t = int(par)
             print(f"\n!Displaying Position Data for {t} request(s).\n")
             for i in range(t):
                 data = getPosData()
@@ -61,14 +79,16 @@ def track(par):
                     lat, lon = data
                     print(f"------ISS position------\nLatitude: {lat}\nLongitude: {lon}\n")
                 time.sleep(1)
-        except TypeError as e:
-            print("Error: Incorrect parammeters")
+        except ValueError:
+            print("Error: Incorrect parameters")
+
 
 #people command
 def people():
     data = getPeopData()
     if data != None:
         print(f"\nThere are currently {data} people in space!\n")
+
 
 #main Program
 def main():
@@ -108,7 +128,8 @@ def main():
 
             #invalid command
             else:
-                print("!Invalid command. Enter 'help' to display command list.")
+                print("Invalid command! Enter 'help' to display command list.")
+            
         except KeyboardInterrupt:
             print("\nExiting...\n")
             break
