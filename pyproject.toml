@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "iss-tracker-cli"
-version = "0.2.2"
+version = "0.2.3"
 description = "CLI tool for tracking the real-time position of the International Space Station (ISS) and displaying how many people are currently in space"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -37,4 +37,4 @@ classifiers = [
 iss-tracker = "iss_tracker.main:main"
 
 [tool.setuptools]
-py-modules = ["iss_tracker"]
+packages = ["iss_tracker"]
